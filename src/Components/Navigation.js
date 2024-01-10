@@ -2,6 +2,19 @@ import { NavLink } from "react-router-dom";
 import { Container, Navbar, Nav } from "react-bootstrap";
 
 const Navigation = () => {
+  const list = [
+    { name: "Strona główna", path: "/" },
+    { name: "Kluby i koła", path: "/kluby-i-kola" },
+    { name: "Posłowie", path: "/poslowie" },
+    { name: "Komisje sejmowe", path: "/komisje-sejmowe" },
+  ];
+
+  const menu = list.map((item, index) => (
+    <NavLink key={index} to={item.path} className="nav-link">
+      {item.name}
+    </NavLink>
+  ));
+
   return (
     <Navbar expand="lg" bg="light" data-bs-theme="light">
       <Container>
@@ -12,20 +25,7 @@ const Navigation = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavLink to="/" className="nav-link">
-              Strona główna
-            </NavLink>
-            <NavLink to="/kluby-i-kola" className="nav-link">
-              Kluby i koła
-            </NavLink>
-            <NavLink to="/poslowie" className="nav-link">
-              Posłowie
-            </NavLink>
-            <NavLink to="/komisje-sejmowe" className="nav-link">
-              Komisje sejmowe
-            </NavLink>
-          </Nav>
+          <Nav className="me-auto">{menu}</Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
