@@ -1,16 +1,11 @@
-import { Outlet } from "react-router-dom";
 import { AppProvider } from "./AppContext";
-import Navigation from "./Components/Navigation";
-import { Container } from "react-bootstrap";
+import Router from "./Router";
 
 const App = () => {
   return (
     <AppProvider>
       <div className="App">
-        <Navigation />
-        <Container className="mt-3">
-          <Outlet />
-        </Container>
+        <Router />
       </div>
     </AppProvider>
   );

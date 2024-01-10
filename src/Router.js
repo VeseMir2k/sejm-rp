@@ -1,26 +1,37 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./Pages/Layout";
 import Home from "./Pages/Home";
 import ClubsAndGroups from "./Pages/ClubsAndGroups";
 import MembersOfParliament from "./Pages/MembersOfParliament";
 import ParliamentaryCommittees from "./Pages/ParliamentaryCommittees";
 
 const Router = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="/kluby-i-kola" element={<ClubsAndGroups />} />
-          <Route path="/poslowie" element={<MembersOfParliament />} />
-          <Route
-            path="/komisje-sejmowe"
-            element={<ParliamentaryCommittees />}
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  const router = createBrowserRouter([
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/kluby-i-kola",
+          element: <ClubsAndGroups />,
+        },
+        {
+          path: "/poslowie",
+          element: <MembersOfParliament />,
+        },
+        {
+          path: "/komisje-sejmowe",
+          element: <ParliamentaryCommittees />,
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default Router;
