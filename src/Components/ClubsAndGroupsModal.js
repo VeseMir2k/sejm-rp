@@ -1,20 +1,16 @@
-import { useContext } from "react";
-import { AppContext } from "../AppContext";
 import Modal from "react-bootstrap/Modal";
 
-const ClubsAndGroupsModal = ({ handleClose, show }) => {
-  const { clubGroup } = useContext(AppContext);
-
+const ClubsAndGroupsModal = ({ handleClose, show, data }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{clubGroup.id}</Modal.Title>
+        <Modal.Title>{data.id}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>Nazwa: {clubGroup.name}</p>
-        <p>Fax: {clubGroup.fax}</p>
-        {clubGroup.email ? <p>Email: {clubGroup.email}</p> : null}
-        <p>Liczba członków: {clubGroup.membersCount}</p>
+        <p>Nazwa: {data.name}</p>
+        <p>Fax: {data.fax}</p>
+        {data.email ? <p>Email: {data.email}</p> : null}
+        <p>Liczba członków: {data.membersCount}</p>
       </Modal.Body>
     </Modal>
   );

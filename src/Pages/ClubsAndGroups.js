@@ -1,34 +1,18 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../AppContext";
-import { Button, Stack } from "react-bootstrap";
-import ClubsAndGroupsModal from "../Components/ClubsAndGroupsModal";
+import ButtonModal from "../Components/ButtonModal";
+import { Stack } from "react-bootstrap";
 
 const ClubsAndGroups = () => {
-  const { clubsGroups, setClubGroup } = useContext(AppContext);
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { clubsGroups } = useContext(AppContext);
 
   const result = clubsGroups.map((item, index) => (
-    <Button
-      onClick={() => {
-        handleShow();
-        setClubGroup(item);
-      }}
-      className="mb-2 w-50"
-      size="lg"
-      variant="outline-light"
-      key={index}
-    >
-      {item.id}
-    </Button>
+    <ButtonModal key={index} data={item} />
   ));
 
   return (
     <>
       <Stack className="d-flex align-items-center">{result}</Stack>
-      <ClubsAndGroupsModal handleClose={handleClose} show={show} />
     </>
   );
 };
