@@ -6,3 +6,15 @@ body {
   text-decoration: none;
   color: inherit;
 }
+
+.members-list {
+  color: #bbb;
+}
+
+.members-list:hover {
+  color: #eee;
+}
+
+.members-list.active {
+  color: #eee;
+}

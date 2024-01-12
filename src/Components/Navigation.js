@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Container, Navbar, Nav } from "react-bootstrap";
+import InputSearchMembers from "./InputSearchMembers";
 
 const Navigation = () => {
   const list = [
@@ -25,7 +26,14 @@ const Navigation = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">{menu}</Nav>
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "100px" }}
+            navbarScroll
+          >
+            {menu}
+          </Nav>
+          <InputSearchMembers />
         </Navbar.Collapse>
       </Container>
     </Navbar>

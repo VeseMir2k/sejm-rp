@@ -4,9 +4,8 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [clubsGroups, setClubsGroups] = useState([]);
-  const [clubGroup, setClubGroup] = useState([]);
   const [membersOfParliament, setMembersOfParliament] = useState([]);
-  const [memberOfParliament, setMemberOfParliament] = useState([]);
+  const [memberInputValue, setMemberInputValue] = useState("");
 
   const fetchClubsGroups = async () => {
     const response = await fetch("https://api.sejm.gov.pl/sejm/term10/clubs");
@@ -29,11 +28,9 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         clubsGroups,
-        clubGroup,
-        setClubGroup,
         membersOfParliament,
-        memberOfParliament,
-        setMemberOfParliament,
+        memberInputValue,
+        setMemberInputValue,
       }}
     >
       {children}
