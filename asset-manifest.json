@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sejm-rp/static/css/main.459add57.css",
+    "main.js": "/sejm-rp/static/js/main.a572a445.js",
+    "static/js/787.7a525ce2.chunk.js": "/sejm-rp/static/js/787.7a525ce2.chunk.js",
+    "index.html": "/sejm-rp/index.html",
+    "main.459add57.css.map": "/sejm-rp/static/css/main.459add57.css.map",
+    "main.a572a445.js.map": "/sejm-rp/static/js/main.a572a445.js.map",
+    "787.7a525ce2.chunk.js.map": "/sejm-rp/static/js/787.7a525ce2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.459add57.css",
+    "static/js/main.a572a445.js"
+  ]
+}
