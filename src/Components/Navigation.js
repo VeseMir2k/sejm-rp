@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import InputSearchMembers from "./InputSearchMembers";
 
 const Navigation = () => {
+  const { address } = useParams();
+
   const list = [
     { name: "Strona główna", path: "/" },
     { name: "Kluby i koła", path: "/kluby-i-kola" },
@@ -17,7 +19,7 @@ const Navigation = () => {
   ));
 
   return (
-    <Navbar expand="lg" bg="light" data-bs-theme="light">
+    <Navbar expand="lg" bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand>
           <NavLink to="/" className="nav-brand__nav-link">
@@ -33,7 +35,7 @@ const Navigation = () => {
           >
             {menu}
           </Nav>
-          <InputSearchMembers />
+          {address === list.name ? null : <InputSearchMembers />}
         </Navbar.Collapse>
       </Container>
     </Navbar>

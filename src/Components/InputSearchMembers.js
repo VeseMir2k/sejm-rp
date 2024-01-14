@@ -8,6 +8,7 @@ const InputSearchMembers = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const value = searchParams.get("filter") || "";
+
   const handleInputChange = (event) => {
     const filter = event.target.value;
     if (filter) {
@@ -22,9 +23,7 @@ const InputSearchMembers = () => {
   return (
     <Form>
       <Form.Control
-        placeholder="Username"
-        aria-label="Username"
-        aria-describedby="basic-addon1"
+        placeholder="Imię i Nazwisko"
         value={value}
         onChange={handleInputChange}
       />

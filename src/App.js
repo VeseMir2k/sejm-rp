@@ -6,7 +6,7 @@ const App = () => {
   return (
     <AppProvider>
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Router />
         </BrowserRouter>
       </div>

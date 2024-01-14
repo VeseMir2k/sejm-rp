@@ -11,16 +11,16 @@ const MembersClubGroup = () => {
   const list = membersOfParliament
     .filter((item) => {
       if (memberInputValue) {
-        let name = item.firstName.toLowerCase();
+        let name = item.firstLastName.toLowerCase();
         let value = memberInputValue.toLowerCase();
-        return name === value;
+        return name.includes(value);
       } else {
         return item;
       }
     })
     .map((item, index) =>
       item.club.toLowerCase() === address ? (
-        <MemberOfParliamentCard data={item} />
+        <MemberOfParliamentCard key={index} data={item} />
       ) : null
     );
 

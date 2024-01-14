@@ -2,19 +2,25 @@ body {
   min-height: 100vh;
 }
 
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #f8f9fa;
+  color: #000;
+  border: 3px solid #6c757ded;
+}
+
 .nav-brand__nav-link {
   text-decoration: none;
   color: inherit;
 }
 
 .members-list {
-  color: #bbb;
+  color: #888;
 }
 
 .members-list:hover {
-  color: #eee;
-}
-
-.members-list.active {
-  color: #eee;
+  color: #000;
 }
