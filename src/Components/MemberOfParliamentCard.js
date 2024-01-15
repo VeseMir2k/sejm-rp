@@ -20,13 +20,12 @@ const MemberOfParliamentCard = ({ data }) => {
       <Card bg="dark" text="light" className="d-flex flex-row">
         {/* Spinner wyświetlany podczas ładowania obrazu */}
         {imageLoading && (
-          <Spinner
-            animation="border"
-            role="status"
-            style={{ margin: "auto", marginTop: "20px" }}
+          <div
+            className="d-flex align-items-center justify-content-center"
+            style={{ width: "100px", height: "128px" }}
           >
-            <span className="sr-only">Loading...</span>
-          </Spinner>
+            <Spinner animation="border" role="status" />
+          </div>
         )}
         {/* Obraz przedstawiający posła */}
         <Card.Img

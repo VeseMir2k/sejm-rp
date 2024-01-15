@@ -14,16 +14,48 @@ export const AppProvider = ({ children }) => {
 
   // Funkcja do pobierania danych klubów/grup
   const fetchClubsGroups = async () => {
-    const response = await fetch("https://api.sejm.gov.pl/sejm/term10/clubs");
-    const data = await response.json();
-    setClubsGroups(data);
+    try {
+      const response = await fetch("https://api.sejm.gov.pl/sejm/term10/clubs");
+
+      if (!response.ok) {
+        throw new Error(`Błąd pobierania danych: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      // Dodatkowe sprawdzenie, czy dane są poprawne (możesz dostosować w zależności od struktury API).
+      if (!data || !Array.isArray(data)) {
+        throw new Error("Błędny format danych o klubach.");
+      }
+
+      setClubsGroups(data);
+    } catch (error) {
+      console.error("Wystąpił błąd:", error.message);
+      // Dodaj odpowiednie działania w przypadku błędu, na przykład wyświetlenie komunikatu użytkownikowi.
+    }
   };
 
   // Funkcja do pobierania danych członków parlamentu
   const fetchMembersOfParliament = async () => {
-    const response = await fetch("https://api.sejm.gov.pl/sejm/term10/MP");
-    const data = await response.json();
-    setMembersOfParliament(data);
+    try {
+      const response = await fetch("https://api.sejm.gov.pl/sejm/term10/MP");
+
+      if (!response.ok) {
+        throw new Error(`Błąd pobierania danych: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      // Dodatkowe sprawdzenie, czy dane są poprawne (możesz dostosować w zależności od struktury API).
+      if (!data || !Array.isArray(data)) {
+        throw new Error("Błędny format danych posłów.");
+      }
+
+      setMembersOfParliament(data);
+    } catch (error) {
+      console.error("Wystąpił błąd:", error.message);
+      // Dodaj odpowiednie działania w przypadku błędu, na przykład wyświetlenie komunikatu użytkownikowi.
+    }
   };
 
   // Efekt pobierający dane klubów/grup i członków parlamentu przy pierwszym renderowaniu
