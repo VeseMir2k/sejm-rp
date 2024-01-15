@@ -5,9 +5,12 @@ import ClubsAndGroups from "./Pages/ClubsAndGroups";
 import MembersOfParliamentLayout from "./Layouts/MembersOfParliamentLayout";
 import MembersOfParliament from "./Pages/MembersOfParliament";
 import MembersClubGroup from "./Components/MembersClubGroup";
+import ParliamentaryCommitteesLayout from "./Layouts/ParliamentaryCommitteesLayout";
 import ParliamentaryCommittees from "./Pages/ParliamentaryCommittees";
 
+// Komponent Router
 const Router = () => {
+  // Użycie hooka useRoutes do zdefiniowania tras
   const router = useRoutes([
     {
       element: <Layout />,
@@ -35,15 +38,21 @@ const Router = () => {
             },
           ],
         },
-
         {
           path: "/komisje-sejmowe",
-          element: <ParliamentaryCommittees />,
+          element: <ParliamentaryCommitteesLayout />,
+          children: [
+            {
+              index: "true",
+              element: <ParliamentaryCommittees />,
+            },
+          ],
         },
       ],
     },
   ]);
 
+  // Renderowanie routera
   return router;
 };
 
