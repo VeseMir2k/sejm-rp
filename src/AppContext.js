@@ -12,6 +12,8 @@ export const AppProvider = ({ children }) => {
   // Stan dla wartości wprowadzonej przez użytkownika w wyszukiwarce
   const [memberInputValue, setMemberInputValue] = useState("");
 
+  const [parliamentaryCommittees, setParliamentaryCommittees] = useState([]);
+
   // Funkcja do pobierania danych klubów/grup
   const fetchClubsGroups = async () => {
     try {
@@ -58,10 +60,36 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Funkcja do pobierania danych komisji parlamentarnych
+  const fetchParliamentaryCommittees = async () => {
+    try {
+      const response = await fetch(
+        "https://api.sejm.gov.pl/sejm/term10/committees"
+      );
+
+      if (!response.ok) {
+        throw new Error(`Błąd pobierania danych: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      // Dodatkowe sprawdzenie, czy dane są poprawne (możesz dostosować w zależności od struktury API).
+      if (!data || !Array.isArray(data)) {
+        throw new Error("Błędny format danych komitetów parlamentarnych.");
+      }
+
+      setParliamentaryCommittees(data);
+    } catch (error) {
+      console.error("Wystąpił błąd:", error.message);
+      // Dodaj odpowiednie działania w przypadku błędu, na przykład wyświetlenie komunikatu użytkownikowi.
+    }
+  };
+
   // Efekt pobierający dane klubów/grup i członków parlamentu przy pierwszym renderowaniu
   useEffect(() => {
     fetchClubsGroups();
     fetchMembersOfParliament();
+    fetchParliamentaryCommittees();
   }, []);
 
   // Udostępnienie danych za pomocą kontekstu
@@ -72,6 +100,7 @@ export const AppProvider = ({ children }) => {
         membersOfParliament,
         memberInputValue,
         setMemberInputValue,
+        parliamentaryCommittees,
       }}
     >
       {/* Renderowanie komponentów potomnych (children) */}
