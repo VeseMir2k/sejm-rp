@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/sejm-rp/static/css/main.ca8729f6.css",
-    "main.js": "/sejm-rp/static/js/main.71dff1c9.js",
+    "main.js": "/sejm-rp/static/js/main.879b1561.js",
     "static/js/787.7a525ce2.chunk.js": "/sejm-rp/static/js/787.7a525ce2.chunk.js",
     "static/media/sejmrp-logo.png": "/sejm-rp/static/media/sejmrp-logo.28edafefcd7fbfc42df4.png",
     "index.html": "/sejm-rp/index.html",
     "main.ca8729f6.css.map": "/sejm-rp/static/css/main.ca8729f6.css.map",
-    "main.71dff1c9.js.map": "/sejm-rp/static/js/main.71dff1c9.js.map",
+    "main.879b1561.js.map": "/sejm-rp/static/js/main.879b1561.js.map",
     "787.7a525ce2.chunk.js.map": "/sejm-rp/static/js/787.7a525ce2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ca8729f6.css",
-    "static/js/main.71dff1c9.js"
+    "static/js/main.879b1561.js"
   ]
 }
