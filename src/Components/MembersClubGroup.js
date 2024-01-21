@@ -1,38 +1,40 @@
-import { useParams } from "react-router-dom";
-import { AppContext } from "../AppContext";
 import { useContext } from "react";
-import { Row } from "react-bootstrap";
-import MemberOfParliamentCard from "./MemberOfParliamentCard";
+import { AppContext } from "../AppContext";
+import { useParams } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
+import MemberCard from "./MemberCard";
 
-// Komponent MembersClubGroup
+/**
+ * Komponent MembersClubGroup odpowiedzialny za wyświetlanie kart członków parlamentu
+ * należących do określonego klubu lub grupy. Członkowie są filtrowani na podstawie adresu
+ * z parametrów ścieżki (`url`) i opcjonalnie wprowadzonej wartości do wyszukiwania
+ * (`memberInputValue`).
+ */
 const MembersClubGroup = () => {
-  // Pobieranie danych z kontekstu aplikacji za pomocą useContext
+  // Pobranie danych z kontekstu aplikacji za pomocą useContext
   const { membersOfParliament, memberInputValue } = useContext(AppContext);
-  // Pobieranie adresu z parametrów URL za pomocą hooka useParams
-  const { address } = useParams();
+  // Pobranie adresu z parametrów ścieżki
+  const { url } = useParams();
 
-  // Filtracja i mapowanie danych członków parlamentu
-  const list = membersOfParliament
-    .filter((item) => {
-      if (memberInputValue) {
-        // Filtracja po imieniu i nazwisku, jeśli jest wprowadzone wyszukiwanie
-        let name = item.firstLastName.toLowerCase();
-        let value = memberInputValue.toLowerCase();
-        return name.includes(value);
-      } else {
-        // Jeśli nie ma wprowadzonego wyszukiwania, zwróć wszystkich członków
-        return item;
-      }
-    })
-    .map((item, index) =>
-      // Mapowanie i renderowanie karty dla członków przypisanych do danego klubu/grupy
-      item.club.toLowerCase() === address ? (
-        <MemberOfParliamentCard key={index} data={item} />
-      ) : null
-    );
+  // Filtrowanie członków parlamentu na podstawie wprowadzonej wartości do wyszukiwania
+  const filteredMembers = membersOfParliament.filter(
+    (item) =>
+      !memberInputValue ||
+      item.firstLastName.toLowerCase().includes(memberInputValue.toLowerCase())
+  );
 
-  // Renderowanie listy kart członków parlamentu
-  return <Row>{list}</Row>;
+  // Filtrowanie członków klubu lub grupy na podstawie adresu
+  const memberCards = filteredMembers
+    .filter((item) => item.club.toLowerCase() === url)
+    .map((item, index) => (
+      <Col className="d-flex justify-content-center mb-4" key={index}>
+        {/* Wywołanie komponentu MemberCard z przekazanymi danymi */}
+        <MemberCard data={item} />
+      </Col>
+    ));
+
+  // Renderowanie wiersza z kartami członków klubu lub grupy
+  return <Row>{memberCards}</Row>;
 };
 
 export default MembersClubGroup;

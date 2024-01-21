@@ -3,18 +3,24 @@ import { AppContext } from "../AppContext";
 import { NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 
-// Komponent MembersOfParliamentNav
+/**
+ * Komponent MembersOfParliamentNav odpowiedzialny za renderowanie nawigacji
+ * zawierającej linki do poszczególnych klubów lub grup parlamentarnych.
+ * Przy kliknięciu na link, wartość wprowadzona w wyszukiwarce (`setMemberInputValue("")`)
+ * zostaje wyczyszczona.
+ */
 const MembersOfParliamentNav = () => {
-  // Pobieranie danych z kontekstu aplikacji za pomocą useContext
+  // Pobranie danych z kontekstu aplikacji za pomocą useContext
   const { clubsGroups, setMemberInputValue } = useContext(AppContext);
 
-  // Tworzenie menu nawigacyjnego na podstawie danych klubów/grup
+  // Mapowanie danych klubów/grup na elementy nawigacji
   const menu = clubsGroups.map((item, index) => (
     <Nav.Item key={index}>
-      {/* NavLink do nawigacji między klubami/grupami */}
+      {/* Utworzenie nawigacyjnego linku do podstrony danego klubu lub grupy */}
       <NavLink
         to={`/poslowie/${item.id.toLowerCase()}`}
-        onClick={() => setMemberInputValue("")} // Resetowanie wartości wyszukiwania po kliknięciu w nawigację
+        // Przy kliknięciu na link, wartość wprowadzona w wyszukiwarce zostaje wyczyszczona
+        onClick={() => setMemberInputValue("")}
         className="nav-link members-list"
       >
         {item.id}
@@ -22,8 +28,12 @@ const MembersOfParliamentNav = () => {
     </Nav.Item>
   ));
 
-  // Renderowanie menu nawigacyjnego
-  return <Nav variant="tabs">{menu}</Nav>;
+  // Renderowanie nawigacji
+  return (
+    <Nav variant="tabs" className="mb-4">
+      {menu}
+    </Nav>
+  );
 };
 
 export default MembersOfParliamentNav;

@@ -1,17 +1,18 @@
 import { Outlet } from "react-router-dom";
-import Navigation from "../Components/Navigation";
 import { Container } from "react-bootstrap";
+import Navigation from "../Components/Navigation";
 
-// Komponent Layout
+/**
+ * Komponent Layout, który definiuje ogólną strukturę strony.
+ * Zawiera pasek nawigacyjny (Navigation) i miejsce na zawartość strony (Outlet).
+ */
 const Layout = () => {
-  // Renderowanie struktury strony
   return (
     <>
-      {/* Wywołanie komponentu nawigacji */}
+      {/* Komponent nawigacyjny wyświetlający menu nawigacyjne strony */}
       <Navigation />
-      {/* Kontener dla treści strony z dodatkowym marginesem na górze */}
+      {/* Kontener Bootstrapa, zawierający zawartość strony z react-router-dom */}
       <Container className="mt-3">
-        {/* Outlet służący do renderowania zagnieżdżonych stron zdefiniowanych w rodzicu */}
         <Outlet />
       </Container>
     </>

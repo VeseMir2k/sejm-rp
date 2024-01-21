@@ -4,10 +4,13 @@ import ButtonModal from "../Components/ButtonModal";
 import { Stack } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
-// Komponent ClubsAndGroups
+/**
+ * Komponent ClubsAndGroups renderujący przyciski modalne na podstawie danych klubów/grup.
+ */
 const ClubsAndGroups = () => {
   // Pobieranie danych z kontekstu aplikacji za pomocą useContext
   const { clubsGroups } = useContext(AppContext);
+
   // Pobieranie informacji o bieżącej lokalizacji za pomocą useLocation
   const location = useLocation();
 

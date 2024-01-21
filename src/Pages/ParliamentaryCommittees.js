@@ -1,13 +1,30 @@
-import { Container } from "react-bootstrap";
-import sejmRpLogo from "../sejmrp-logo.png";
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
+import { NavLink } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
-// Komponent ParliamentaryCommittees
+/**
+ * Komponent ParliamentaryCommittees reprezentujący widok komisji sejmowych.
+ */
 const ParliamentaryCommittees = () => {
-  // Renderowanie zawartości strony dotyczącej komisji sejmowych
+  const { parliamentaryCommittees } = useContext(AppContext);
+
+  const menu = parliamentaryCommittees.map((item, index) => (
+    <Col className="mb-4 col-4" key={index}>
+      {/* Nawigacja do strony konkretnej komisji sejmowej */}
+      <NavLink
+        to={`/komisje-sejmowe/${item.code.toLowerCase()}`}
+        className="btn btn-dark w-100 h-100 p-4"
+      >
+        {item.name}
+      </NavLink>
+    </Col>
+  ));
+
   return (
-    <Container className="d-flex justify-content-center align-items-center opacity-25">
-      {/* Wyświetlanie logo SejmRP */}
-      <img className="mt-5" src={sejmRpLogo} alt="sejm rp logo" />
+    <Container>
+      {/* Wyświetlanie listy komisji sejmowych */}
+      <Row>{menu}</Row>
     </Container>
   );
 };

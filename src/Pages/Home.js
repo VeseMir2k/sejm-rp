@@ -1,7 +1,9 @@
 import { Container } from "react-bootstrap";
 import sejmRpLogo from "../sejmrp-logo.png";
 
-// Komponent Home
+/**
+ * Komponent Home renderujący zawartość strony domowej.
+ */
 const Home = () => {
   // Renderowanie zawartości strony domowej
   return (

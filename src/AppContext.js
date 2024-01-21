@@ -11,7 +11,7 @@ export const AppProvider = ({ children }) => {
   const [membersOfParliament, setMembersOfParliament] = useState([]);
   // Stan dla wartości wprowadzonej przez użytkownika w wyszukiwarce
   const [memberInputValue, setMemberInputValue] = useState("");
-
+  // Stan dla komisji parlamentarnych
   const [parliamentaryCommittees, setParliamentaryCommittees] = useState([]);
 
   // Funkcja do pobierania danych klubów/grup

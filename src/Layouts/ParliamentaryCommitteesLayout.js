@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-// Komponent ParliamentaryCommitteesLayout
+/**
+ * Komponent ParliamentaryCommitteesLayout, który renderuje Outlet do obsługi zagnieżdżonych stron.
+ */
 const ParliamentaryCommitteesLayout = () => {
-  // Renderowanie elementu Outlet, który będzie zawierać zagnieżdżone strony
   return <Outlet />;
 };
 

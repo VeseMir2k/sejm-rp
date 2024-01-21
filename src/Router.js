@@ -5,46 +5,69 @@ import ClubsAndGroups from "./Pages/ClubsAndGroups";
 import MembersOfParliamentLayout from "./Layouts/MembersOfParliamentLayout";
 import MembersOfParliament from "./Pages/MembersOfParliament";
 import MembersClubGroup from "./Components/MembersClubGroup";
+import MemberInformation from "./Pages/MemberInformation";
 import ParliamentaryCommitteesLayout from "./Layouts/ParliamentaryCommitteesLayout";
 import ParliamentaryCommittees from "./Pages/ParliamentaryCommittees";
+import ParliamentaryCommittee from "./Components/ParliamentaryCommittee";
 
-// Komponent Router
 const Router = () => {
-  // Użycie hooka useRoutes do zdefiniowania tras
+  // Definicja tras za pomocą useRoutes
   const router = useRoutes([
     {
-      element: <Layout />,
-      path: "/",
+      path: "/", // Główna ścieżka
+      element: <Layout />, // Komponent Layout dla tej ścieżki
       children: [
         {
           index: "true",
-          element: <Home />,
+          element: <Home />, // Komponent Home dla ścieżki bazowej
         },
         {
           path: "/kluby-i-kola",
-          element: <ClubsAndGroups />,
+          element: <ClubsAndGroups />, // Komponent ClubsAndGroups dla ścieżki /kluby-i-kola
         },
         {
           path: "/poslowie",
-          element: <MembersOfParliamentLayout />,
+          element: <MembersOfParliamentLayout />, // Layout dla stron dotyczących posłów
           children: [
             {
               index: "true",
-              element: <MembersOfParliament />,
+              element: <MembersOfParliament />, // Komponent MembersOfParliament dla ścieżki /poslowie
             },
             {
-              path: ":address",
-              element: <MembersClubGroup />,
+              path: ":url", // Parametr dynamiczny w ścieżce dla klubu/grupy
+              children: [
+                {
+                  index: "true",
+                  element: <MembersClubGroup />, // Komponent MembersClubGroup dla konkretnego klubu/grupy
+                },
+                {
+                  path: ":memberUrl",
+                  element: <MemberInformation />, // Komponent MemberInformation dla konkretnego członka
+                },
+              ],
             },
           ],
         },
         {
           path: "/komisje-sejmowe",
-          element: <ParliamentaryCommitteesLayout />,
+          element: <ParliamentaryCommitteesLayout />, // Layout dla stron dotyczących komisji sejmowych
           children: [
             {
               index: "true",
-              element: <ParliamentaryCommittees />,
+              element: <ParliamentaryCommittees />, // Komponent ParliamentaryCommittees dla ścieżki /komisje-sejmowe
+            },
+            {
+              path: ":url",
+              children: [
+                {
+                  index: "true",
+                  element: <ParliamentaryCommittee />, // Komponent ParliamentaryCommittee dla konkretnej komisji
+                },
+                {
+                  path: ":memberUrl",
+                  element: <MemberInformation />, // Komponent MemberInformation dla konkretnego członka
+                },
+              ],
             },
           ],
         },
@@ -52,7 +75,6 @@ const Router = () => {
     },
   ]);
 
-  // Renderowanie routera
   return router;
 };
 

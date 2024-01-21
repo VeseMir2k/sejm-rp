@@ -3,21 +3,25 @@ import { AppContext } from "../AppContext";
 import { useSearchParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
-// Komponent InputSearchMembers
+/**
+ * Komponent InputSearchMembers reprezentuje pole wyszukiwania członków parlamentu.
+ * Pozwala użytkownikowi wprowadzić imię i nazwisko w celu filtrowania listy posłów.
+ */
 const InputSearchMembers = () => {
-  // Wykorzystanie useContext do pobrania setMemberInputValue z AppContext
+  // Pobranie funkcji setMemberInputValue z kontekstu aplikacji
   const { setMemberInputValue } = useContext(AppContext);
-  // Wykorzystanie useSearchParams do zarządzania parametrami URL
+  // Hook useSearchParams do obsługi parametrów z adresu URL
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Pobranie wartości filtra z parametrów URL lub ustawienie domyślnej pustej wartości
+  // Pobranie wartości filtra z parametrów adresu URL lub ustawienie domyślnej wartości pustej
   const value = searchParams.get("filter") || "";
 
-  // Funkcja obsługująca zmiany w inpucie
+  // Obsługa zmiany wartości w polu wyszukiwania
   const handleInputChange = (event) => {
-    // Pobranie wartości z inputa
+    // Pobranie wprowadzonego filtra
     const filter = event.target.value;
-    // Aktualizacja parametrów URL i stanu aplikacji na podstawie wartości filtra
+
+    // Aktualizacja parametrów adresu URL i stanu aplikacji na podstawie wprowadzonego filtra
     if (filter) {
       setSearchParams({ filter });
       setMemberInputValue(filter);
@@ -27,7 +31,7 @@ const InputSearchMembers = () => {
     }
   };
 
-  // Renderowanie formularza z inputem do wyszukiwania
+  // Renderowanie formularza z polem wyszukiwania
   return (
     <Form>
       <Form.Control
@@ -39,5 +43,4 @@ const InputSearchMembers = () => {
   );
 };
 
-// Eksportowanie komponentu InputSearchMembers
 export default InputSearchMembers;
