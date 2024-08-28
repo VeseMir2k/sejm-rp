@@ -27,7 +27,7 @@ const MembersClubGroup = () => {
   const memberCards = filteredMembers
     .filter((item) => item.club.toLowerCase() === url)
     .map((item, index) => (
-      <Col className="d-flex justify-content-center mb-4" key={index}>
+      <Col className="d-flex justify-content-center mb-4" key={item.id}>
         {/* Wywołanie komponentu MemberCard z przekazanymi danymi */}
         <MemberCard data={item} />
       </Col>
